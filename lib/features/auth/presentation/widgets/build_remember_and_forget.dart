@@ -5,8 +5,14 @@ import '../../../../core/constants/app_constants.dart';
 
 class BuildRememberAndForget extends StatelessWidget {
   final bool value;
- final void Function()? onPressed;
-  const BuildRememberAndForget({super.key,required this.onPressed,required this.value});
+  final void Function()? onPressed;
+  final void Function(bool?)? onChanged;
+
+  const BuildRememberAndForget(
+      {super.key,
+      required this.onPressed,
+      required this.value,
+      required this.onChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +23,7 @@ class BuildRememberAndForget extends StatelessWidget {
           children: [
             Checkbox(
               value: value,
-              onChanged: (value) {
-                // TODO: Handle remember me
-              },
+              onChanged: onChanged,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(4.r),
               ),
@@ -33,8 +37,8 @@ class BuildRememberAndForget extends StatelessWidget {
           child: Text(
             AppConstants.forgetPassword,
             style: Theme.of(context).textTheme.headlineLarge!.copyWith(
-              decoration: TextDecoration.underline,
-            ),
+                  decoration: TextDecoration.underline,
+                ),
           ),
         ),
       ],

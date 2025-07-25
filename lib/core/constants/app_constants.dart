@@ -1,7 +1,7 @@
 class AppConstants {
 
   static const String noRoute='No Route';
-  static const String baseUrl = 'https://exam.elevateegy.com';
+
   static const String localKey = 'local_key';
   static const String arLocalKey = 'ar';
   static const String enLocalKey = 'en';
@@ -32,4 +32,7 @@ class AppConstants {
   static const String rememberMe='Remember me';
   static const String forgetPassword='Forget Password?';
   static const String doNotHaveAccount='Don\'t have an account?';
+  static const String rememberMeKey = 'remember_me';
+  static const String savedEmailKey = 'saved_email';
+  static const String savedPasswordKey = 'saved_password';
 }

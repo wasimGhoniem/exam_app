@@ -26,8 +26,10 @@ import '../../features/auth/domain/repositories/auth_repositories.dart'
     as _i962;
 import '../../features/auth/domain/use_cases/sign_in_use_case.dart' as _i926;
 import '../../features/auth/domain/use_cases/sign_up_use_case.dart' as _i179;
-import '../../features/auth/presentation/cubit/sign_in_view_model.dart'
-    as _i298;
+import '../../features/auth/presentation/cubit/view_model/sign_in_view_model.dart'
+    as _i260;
+import '../../features/auth/presentation/cubit/view_model/sign_up_view_model.dart'
+    as _i897;
 import '../providers/app_config_provider.dart' as _i56;
 import 'modules/dio_module.dart' as _i983;
 import 'modules/shared_prefs_module.dart' as _i913;
@@ -63,8 +65,12 @@ extension GetItInjectableX on _i174.GetIt {
         _i926.SignInUseCase(authRepositories: gh<_i962.AuthRepositories>()));
     gh.factory<_i179.SignUpUseCase>(() =>
         _i179.SignUpUseCase(authRepositories: gh<_i962.AuthRepositories>()));
-    gh.factory<_i298.SignInViewModel>(
-        () => _i298.SignInViewModel(signInUseCase: gh<_i926.SignInUseCase>()));
+    gh.factory<_i260.SignInViewModel>(() => _i260.SignInViewModel(
+          signInUseCase: gh<_i926.SignInUseCase>(),
+          appConfigProvider: gh<_i56.AppConfigProvider>(),
+        ));
+    gh.factory<_i897.SignUpViewModel>(
+        () => _i897.SignUpViewModel(signUpUseCase: gh<_i179.SignUpUseCase>()));
     return this;
   }
 }

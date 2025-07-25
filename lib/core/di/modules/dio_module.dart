@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:exam_app/core/constants/app_constants.dart';
+import 'package:exam_app/core/api_endpoint/endpoint.dart';
 import 'package:exam_app/core/di/di.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
@@ -9,7 +9,7 @@ abstract class DioModule {
   Dio provideDio() {
     Dio dio = Dio();
     dio.options.headers = {'content-type': 'application/json'};
-    dio.options.baseUrl = AppConstants.baseUrl;
+    dio.options.baseUrl = Endpoint.baseUrl;
     dio.interceptors.add(getIt<PrettyDioLogger>());
     return dio;
   }
