@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 import '../../../../core/constants/app_constants.dart';
 import '../../../../core/dialog/dialog_utils.dart';
+import '../cubit/states/sign_in_state.dart';
 
 
-void handleStateListener({
+void handleSignInStateListener({
   required BuildContext context,
   required dynamic state,
   required String successMessage,
   required String errorMessage,
   VoidCallback? onSuccess,
 }) {
-  if (state.isLoading) {
+  if (state.status == SignInStatus.loading) {
     DialogUtils.showLoading(
       context: context,
       message: AppConstants.loadingMessage,
     );
-  } else if (state.errorMsg != null) {
+  } else if (state.status == SignInStatus.error) {
     DialogUtils.hideLoading(context);
     DialogUtils.showMessage(
       context: context,
@@ -23,7 +24,7 @@ void handleStateListener({
       title: AppConstants.errorTitle,
       posActionName: AppConstants.ok,
     );
-  } else if (state.response != null) {
+  } else if (state.status == SignInStatus.success) {
     DialogUtils.hideLoading(context);
     DialogUtils.showMessage(
       context: context,

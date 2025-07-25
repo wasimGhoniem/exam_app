@@ -25,4 +25,33 @@ class AppConfigProvider extends ChangeNotifier {
     sharedPreferences.setString(AppConstants.localKey, selectedLocale);
     notifyListeners();
   }
+
+  // remember me logic
+
+  Future<void> saveRememberMe({
+    required String email,
+    required String password,
+  }) async {
+    await sharedPreferences.setBool(AppConstants.rememberMeKey, true);
+    await sharedPreferences.setString(AppConstants.savedEmailKey, email);
+    await sharedPreferences.setString(AppConstants.savedPasswordKey, password);
+  }
+
+
+  Future<void> clearRememberMe() async {
+    await sharedPreferences.remove(AppConstants.rememberMeKey);
+    await sharedPreferences.remove(AppConstants.savedEmailKey);
+    await sharedPreferences.remove(AppConstants.savedPasswordKey);
+  }
+
+
+  bool get isRemembered =>
+      sharedPreferences.getBool(AppConstants.rememberMeKey) ?? false;
+
+  String? get savedEmail =>
+      sharedPreferences.getString(AppConstants.savedEmailKey);
+
+  String? get savedPassword =>
+      sharedPreferences.getString(AppConstants.savedPasswordKey);
+
 }
